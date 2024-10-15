@@ -1,3 +1,3 @@
-# trackmyroute_flutter
+# TrackMyRoute - Flutter
 
-A new Flutter project.
+Versión de la aplicación móvil TrackMyRoute desarrollada con Flutter. 
