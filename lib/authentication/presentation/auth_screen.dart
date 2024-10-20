@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:trackmyroute_flutter/presentation/login_screen.dart';
-import 'package:trackmyroute_flutter/presentation/signup_screen.dart';
+import 'package:trackmyroute_flutter/authentication/presentation/login_screen.dart';
+import 'package:trackmyroute_flutter/authentication/presentation/signup_screen.dart';
 
 class AuthScreen extends StatelessWidget{
   const AuthScreen({super.key});
@@ -16,8 +16,8 @@ class AuthScreen extends StatelessWidget{
             title: const Text('TrackMyRoute'),
             bottom: const TabBar(
               tabs: [
-                Tab(text: 'Login'),
-                Tab(text: 'Sign Up'),
+                Tab(text: 'Iniciar Sesión'),
+                Tab(text: 'Regístrate'),
               ],
             ),
           ),

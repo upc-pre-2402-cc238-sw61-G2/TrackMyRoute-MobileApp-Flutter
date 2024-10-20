@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:trackmyroute_flutter/domain/user.dart';
+import 'package:trackmyroute_flutter/authentication/domain/user.dart';
 
 class AuthService {
   final String _baseUrl = "https://track-my-route-web-services-cjf2ametdehhdshp.eastus-01.azurewebsites.net/";

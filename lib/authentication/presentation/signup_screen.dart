@@ -15,10 +15,6 @@ class SignupScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               const TextField(
-                decoration: InputDecoration(labelText: 'Full Name'),
-              ),
-              const SizedBox(height: 10),
-              const TextField(
                 decoration: InputDecoration(labelText: 'Usuario'),
               ),
               const SizedBox(height: 10),
