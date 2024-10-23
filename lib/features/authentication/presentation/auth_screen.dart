@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:trackmyroute_flutter/authentication/presentation/login_screen.dart';
-import 'package:trackmyroute_flutter/authentication/presentation/signup_screen.dart';
+import 'package:trackmyroute_flutter/features/authentication/presentation/login_screen.dart';
+import 'package:trackmyroute_flutter/features/authentication/presentation/signup_screen.dart';
 
 class AuthScreen extends StatelessWidget{
   const AuthScreen({super.key});
