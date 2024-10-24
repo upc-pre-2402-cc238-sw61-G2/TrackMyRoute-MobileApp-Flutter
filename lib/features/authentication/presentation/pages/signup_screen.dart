@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trackmyroute_flutter/features/authentication/presentation/blocs/auth_bloc.dart';
+import 'package:trackmyroute_flutter/features/authentication/presentation/blocs/auth_event.dart';
 import 'package:trackmyroute_flutter/shared/presentation/home_page.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -40,7 +43,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       builder: (context) =>  const HomePage(),
                     ),
                   );
-                  // TO-DO: Implement registration functionality
+                  context.read<AuthBloc>().add(RegisterUser(user: _userController.text, password: _pwController.text));
                 },
                 child: const Text('Registrarse'),
               ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:trackmyroute_flutter/shared/presentation/home_page.dart';
-//import 'package:flutter_bloc/flutter_bloc.dart';
-//import 'package:trackmyroute_flutter/features/authentication/presentation/blocs/auth_bloc.dart';
-//import 'package:trackmyroute_flutter/features/authentication/presentation/blocs/auth_event.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trackmyroute_flutter/features/authentication/presentation/blocs/auth_bloc.dart';
+import 'package:trackmyroute_flutter/features/authentication/presentation/blocs/auth_event.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -43,8 +43,7 @@ class _LoginScreenState extends State<LoginScreen>{
                       builder: (context) =>  const HomePage(),
                     ),
                   );
-                  // TO-DO: Implement login authentication
-                  //context.read<AuthBloc>().add(AuthorizeUser(user: _userController.text, password: _pwController.text));
+                  context.read<AuthBloc>().add(AuthorizeUser(user: _userController.text, password: _pwController.text));
                 },
                 child: const Text('Iniciar Sesión'),
               ),
