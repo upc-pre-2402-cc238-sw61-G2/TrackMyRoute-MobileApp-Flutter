@@ -1,4 +1,4 @@
-import 'package:trackmyroute_flutter/promos/domain/promo.dart';
+import 'package:trackmyroute_flutter/features/promos/domain/promo.dart';
 
 class PromosResponseDto {
   final List<Promo> promos;

@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class PromoService {
   Future<PromosResponseDto?> getPromos() async {
     try {
-      final response = await http.get(Uri.parse('${AppConstants.baseUrl}promos'));
+      final response = await http.get(Uri.parse('${AppConstants.baseUrl}promo'));
 
       if (response.statusCode == 200) {
         // Decodificar el JSON de la respuesta y convertirlo en un objeto PromosResponseDto

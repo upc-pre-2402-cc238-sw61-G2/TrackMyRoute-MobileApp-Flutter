@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:trackmyroute_flutter/promos/data/remote/promo_service.dart';
-import 'package:trackmyroute_flutter/promos/data/remote/promos_response_dto.dart';
-import 'package:trackmyroute_flutter/promos/presentation/widgets/promo_card.dart';
+import 'package:trackmyroute_flutter/features/promos/data/remote/promo_service.dart';
+import 'package:trackmyroute_flutter/features/promos/data/remote/promos_response_dto.dart';
+import 'package:trackmyroute_flutter/features/promos/presentation/widgets/promo_card.dart';
 
 class PromoListPage extends StatefulWidget {
   const PromoListPage({super.key});

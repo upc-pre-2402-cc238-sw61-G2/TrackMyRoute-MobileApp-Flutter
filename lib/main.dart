@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trackmyroute_flutter/promos/presentation/pages/promo_list_page.dart';
+import 'package:trackmyroute_flutter/features/promos/presentation/pages/promo_list_page.dart';
 
 void main() {
   runApp(const MainApp());
