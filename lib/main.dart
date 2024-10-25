@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:trackmyroute_flutter/features/promos/presentation/pages/promo_list_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trackmyroute_flutter/features/authentication/presentation/blocs/auth_bloc.dart';
+import 'package:trackmyroute_flutter/features/authentication/presentation/pages/auth_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -10,11 +12,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Promos App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.lightBlue[50],
+
+    return BlocProvider(
+      create: (context) => AuthBloc(),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: AuthScreen()
       ),
       home: const PromoListPage(),
     );
