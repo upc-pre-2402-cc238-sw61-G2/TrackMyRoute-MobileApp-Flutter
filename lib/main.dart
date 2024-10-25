@@ -12,12 +12,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return BlocProvider(
       create: (context) => AuthBloc(),
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: AuthScreen()
       ),
+      home: const PromoListPage(),
     );
   }
 }
