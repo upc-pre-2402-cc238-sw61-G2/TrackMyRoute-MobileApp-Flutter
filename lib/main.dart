@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'core/constants/stripe_consts.dart';
 import 'feature/payment/presentation/pages/home_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trackmyroute_flutter/features/authentication/presentation/blocs/auth_bloc.dart';
+import 'package:trackmyroute_flutter/features/authentication/presentation/pages/auth_screen.dart';
 
 void main() async {
   await _setup();
@@ -18,14 +21,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return BlocProvider(
+      create: (context) => AuthBloc(),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: AuthScreen()
       ),
-      home: const HomePage(),
     );
   }
 }
