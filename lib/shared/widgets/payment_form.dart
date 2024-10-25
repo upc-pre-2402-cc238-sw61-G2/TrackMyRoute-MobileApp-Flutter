@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../feature/payment/application/home_controller.dart';
+import '../../features/payment/application/home_controller.dart';
 
 class PaymentForm extends StatelessWidget {
   final HomeController homeController;
