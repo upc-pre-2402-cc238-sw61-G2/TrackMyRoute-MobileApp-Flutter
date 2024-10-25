@@ -56,11 +56,15 @@ class _SignupScreenState extends State<SignupScreen> {
             child: SizedBox (
               width: 30, height: 30,
               child: CircularProgressIndicator())); 
-        } else {
+        } else if (state is AuthErrorState){
+          state is AuthInitialState;
+          return const SignupScreen();
+        } 
+        else {
           return const HomePage();
         }
       },
     );
-    
+
   }
 }

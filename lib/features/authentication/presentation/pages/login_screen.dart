@@ -55,7 +55,13 @@ class _LoginScreenState extends State<LoginScreen>{
             child: SizedBox (
               width: 30, height: 30,
               child: CircularProgressIndicator())); 
-        } else {
+        } else if (state is AuthErrorState){
+          setState(() {
+            state is AuthInitialState;
+          }); 
+          return const LoginScreen();
+        }
+        else {
           return const HomePage();
         }
       },

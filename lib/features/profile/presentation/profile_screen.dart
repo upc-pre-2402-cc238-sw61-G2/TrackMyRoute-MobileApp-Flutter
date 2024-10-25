@@ -13,6 +13,7 @@ class ProfileScreen extends StatelessWidget {
       body: const Center(
         child: ProfileContent(), // Contenido del perfil centrado
       ),
+      resizeToAvoidBottomInset: false,
     );
   }
 }
@@ -23,7 +24,8 @@ class ProfileContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
+      child: Padding(
       padding: const EdgeInsets.all(16.0),
       child: Card( // Usamos un Card para darle un aspecto profesional
         elevation: 4, // Sombra del Card
@@ -60,7 +62,7 @@ class ProfileContent extends StatelessWidget {
 
               // Descripción breve
               const Text(
-                'Desarrollador de software con experiencia en Flutter y Dart. Apasionado por crear aplicaciones móviles intuitivas.',
+                'Cuenta regular de Track My Route',
                 style: TextStyle(fontSize: 16, color: Colors.black54),
               ),
               const SizedBox(height: 20), // Espacio entre la descripción y los campos
@@ -85,18 +87,6 @@ class ProfileContent extends StatelessWidget {
                 style: TextStyle(fontSize: 16, color: Colors.black54),
               ),
               const SizedBox(height: 20), // Espacio entre los campos
-
-              // Habilidades
-              const Text(
-                'Habilidades:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 5),
-              const Text(
-                '- Flutter\n- Dart\n- Desarrollo web\n- API REST\n- SQL',
-                style: TextStyle(fontSize: 16, color: Colors.black54),
-              ),
-              const SizedBox(height: 20), // Espacio entre las habilidades y el botón
 
               // Redes sociales
               const Text(
@@ -123,7 +113,8 @@ class ProfileContent extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      )
+    ),
     );
   }
 
