@@ -17,6 +17,79 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _pwController = TextEditingController();
 
   @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: SafeArea(
+        child: BlocListener<AuthBloc, AuthState>(
+          listener: (context, state){
+            if (state is RegisterSuccess) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Welcome to FastLearners!'),
+                ),
+              );
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomePage(),
+                  ));
+            } else if (state is AuthErrorState) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.message),
+                ),
+              );
+            } 
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: _userController,
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.person),
+                      border: OutlineInputBorder(),
+                      label: Text('Usuario')),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: _pwController,
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.person),
+                      suffixIcon: IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.visibility)),
+                      border: const OutlineInputBorder(),
+                      label: const Text('Contraseña')),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      final String username = _userController.text;
+                      final String password = _pwController.text;
+                      context.read<AuthBloc>().add(RegisterUser(
+                          user: username, password: password));
+                    },
+                    child: const Text('Registrarse'),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  /*
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (BuildContext context, AuthState state) {
@@ -65,6 +138,6 @@ class _SignupScreenState extends State<SignupScreen> {
         }
       },
     );
-
   }
+  */
 }
