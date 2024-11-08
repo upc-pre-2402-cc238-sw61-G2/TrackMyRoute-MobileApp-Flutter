@@ -2,65 +2,50 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:trackmyroute_flutter/shared/domain/entities/user.dart';
+import 'package:trackmyroute_flutter/core/constants/app_constants.dart';
+import 'package:trackmyroute_flutter/core/utils/resource.dart';
+import 'package:trackmyroute_flutter/features/authentication/data/remote/user_dto.dart';
+import 'package:trackmyroute_flutter/features/authentication/data/remote/user_request.dart';
 
 class AuthService {
-  final String _baseUrl = "https://track-my-route-web-services-cjf2ametdehhdshp.eastus-01.azurewebsites.net/";
+  final String _signIn = '${AppConstants.baseUrl}authentication/sign-in';
+  final String _signUp = '${AppConstants.baseUrl}authentication/sign-up';
 
-  Future<User> signIn(String username, String password) async {
+  Future<Resource<UserDto>> signIn(String username, String password) async {
     try {
-      final uri = Uri.parse('$_baseUrl/api/v1/authentication/sign-in');
-      final headers = {'Content-Type': 'application/json'};
-      final encoding = Encoding.getByName('utf-8');
-      Map<String, dynamic> body = {'username': username, 'password': password};
-      String jsonBody = json.encode(body);
-      
       http.Response response = await http.post(
-        uri,
-        headers: headers,
-        body: jsonBody,
-        encoding: encoding
+        Uri.parse(_signIn),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(UserRequest(username: username, password: password).toMap()),
       );
       
       if (response.statusCode == HttpStatus.ok){
-        print("Sign in Successful.");
-        return User(username: username, password: password);
-      } else {
-        print("Sign in Failed.");
-        return User(username: "", password: "");
-      }
-    } catch (e){
-      print("Error on signIn: $e");
-      return User(username: "", password: "");
+        final Map<String, dynamic> json = jsonDecode(response.body);
+        final UserDto userDto = UserDto.fromJson(json);
+        return Success(userDto);
+      } 
+      return Error('Error: ${response.statusCode}');
+    } catch (error){
+      return Error('Error: ${error.toString()}');
     }
   }  
 
-  Future<User> signUp(String username, String password) async {
+  Future<Resource<MessageDto>> signUp(String username, String password) async {
     try {
-      final uri = Uri.parse('$_baseUrl/api/v1/authentication/sign-up');
-      final headers = {'Content-Type': 'application/json'};
-      final encoding = Encoding.getByName('utf-8');
-      Map<String, dynamic> body = {'username': username, 'password': password};
-      String jsonBody = json.encode(body);
-      
       http.Response response = await http.post(
-        uri,
-        headers: headers,
-        body: jsonBody,
-        encoding: encoding
+        Uri.parse(_signUp),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(UserRequest(username: username, password: password).toMap()),
       );
-
+      
       if (response.statusCode == HttpStatus.ok){
-        print("Sign up Successful.");
-        return User(username: username, password: password);
-      } else {
-        print("Sign up Failed.");
-        return User(username: "", password: "");
-      }
-
-    } catch (e){ 
-      print("Error on signUp: $e");
-      return User(username: "", password: "");
+        final Map<String, dynamic> json = jsonDecode(response.body);
+        final MessageDto messageDto = MessageDto.fromJson(json);
+        return Success(messageDto);
+      } 
+      return Error('Error: ${response.statusCode}');
+    } catch (error){
+      return Error('Error: ${error.toString()}');
     }
   }  
 }
