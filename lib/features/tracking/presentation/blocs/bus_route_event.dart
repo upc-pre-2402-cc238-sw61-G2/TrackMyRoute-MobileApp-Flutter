@@ -35,3 +35,6 @@ class CreateBusRoute extends BusRouteEvent {
     required this.totalDistance
   });
 }
+
+class GetBusRoutesEvent extends BusRouteEvent {
+}

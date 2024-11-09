@@ -1,3 +1,5 @@
+import 'package:trackmyroute_flutter/features/tracking/domain/bus_route.dart';
+
 abstract class BusRouteState {}
 
 class BusRouteInitialState extends BusRouteState {}
@@ -5,21 +7,10 @@ class BusRouteInitialState extends BusRouteState {}
 class BusRouteLoadingState extends BusRouteState {}
 
 class BusRouteLoadedState extends BusRouteState {
-  final String busName;
-  final String originName;
-  final String originCoord;
-  final String destinationName;
-  final String destinationCoord;
-  final String totalDistance;
+  final List<BusRoute> busRoutes;
+  final bool hasReachedEnd;
 
-  BusRouteLoadedState({
-    required this.busName,
-    required this.originName,
-    required this.originCoord,
-    required this.destinationName,
-    required this.destinationCoord,
-    required this.totalDistance,
-  });
+  BusRouteLoadedState({required this.busRoutes, required this.hasReachedEnd});
 }
 
 class BusRouteErrorState extends BusRouteState {

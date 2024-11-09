@@ -1,10 +1,10 @@
 class BusRoute {
-  String busName;
-  String originName;
-  String originCoord;
-  String destinationName;
-  String destinationCoord;
-  String totalDistance;
+  final String busName;
+  final String originName;
+  final String originCoord;
+  final String destinationName;
+  final String destinationCoord;
+  final String totalDistance;
 
   BusRoute({
     required this.busName,
