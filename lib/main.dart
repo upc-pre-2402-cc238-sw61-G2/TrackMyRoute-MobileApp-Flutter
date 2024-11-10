@@ -22,9 +22,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthBloc(),
-      child: const MaterialApp(
+      child: MaterialApp(
+        home: AuthScreen(),
         debugShowCheckedModeBanner: false,
-        home: AuthScreen()
+        darkTheme: ThemeData.dark(),
+        theme: ThemeData.light(),
       ),
     );
   }
