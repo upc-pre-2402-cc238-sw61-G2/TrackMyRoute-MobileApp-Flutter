@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trackmyroute_flutter/features/authentication/presentation/blocs/auth_bloc.dart';
 import 'package:trackmyroute_flutter/features/authentication/presentation/blocs/auth_event.dart';
 import 'package:trackmyroute_flutter/features/authentication/presentation/blocs/auth_state.dart';
+import 'package:trackmyroute_flutter/features/authentication/presentation/blocs/hidden_password_cubit.dart';
 import 'package:trackmyroute_flutter/shared/presentation/home_page.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -22,10 +23,17 @@ class _SignupScreenState extends State<SignupScreen> {
       body: SafeArea(
         child: BlocListener<AuthBloc, AuthState>(
           listener: (context, state){
-            if (state is RegisterSuccess) {
+            if (state is AuthLoadingState){
+              const Center (
+                child: SizedBox (
+                  width: 30, height: 30,
+                  child: CircularProgressIndicator()
+                )
+              );
+            } else if (state is RegisterSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text('Welcome to FastLearners!'),
+                  content: Text('Welcome to TrackMyRoute!'),
                 ),
               );
               Navigator.pushReplacement(
@@ -56,14 +64,21 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: _pwController,
-                  decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.person),
-                      suffixIcon: IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.visibility)),
-                      border: const OutlineInputBorder(),
-                      label: const Text('Contraseña')),
+                child: BlocBuilder<HiddenPasswordCubit, bool>(
+                  builder: (context, state) {
+                    return TextField(
+                      obscureText: state,
+                      controller: _pwController,
+                      decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.person),
+                          suffixIcon: IconButton(
+                               onPressed: () {
+                                context.read<HiddenPasswordCubit>().changeVisibility();
+                              }, icon: Icon(state ? Icons.visibility : Icons.visibility_off)),
+                          border: const OutlineInputBorder(),
+                          label: const Text('Contraseña')),
+                    );
+                  }
                 ),
               ),
               Padding(

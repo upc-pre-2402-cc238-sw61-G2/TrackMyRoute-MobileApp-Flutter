@@ -23,8 +23,11 @@ class _AuthScreenState extends State<AuthScreen>{
               length: 2,
               child: Scaffold(
                 appBar: AppBar(
-                  title: const Text('TrackMyRoute'),
+                  backgroundColor: Colors.teal,
+                  title: const Text('Track My Route', style: TextStyle(color: Colors.white)),
                   bottom: const TabBar(
+                    labelColor: Colors.white,
+                    unselectedLabelColor: Colors.grey,
                     tabs: [
                       Tab(text: 'Iniciar Sesión'),
                       Tab(text: 'Regístrate'),
