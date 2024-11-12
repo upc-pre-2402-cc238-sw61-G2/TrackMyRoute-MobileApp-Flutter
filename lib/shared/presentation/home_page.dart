@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trackmyroute_flutter/features/payment/presentation/pages/home_page.dart';
+import 'package:trackmyroute_flutter/features/payment/presentation/pages/payment_page.dart';
 import 'package:trackmyroute_flutter/features/profile/presentation/profile_screen.dart';
 import 'package:trackmyroute_flutter/features/promos/presentation/pages/promo_list_page.dart';
 import 'package:trackmyroute_flutter/features/tracking/presentation/pages/search_routes_screen.dart';
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Track My Route', style: TextStyle(color: Colors.white)),
+        title: const Text('Track My Route', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.teal,
       ),
       body: _views[_selectedIndex], // Muestra la vista seleccionada

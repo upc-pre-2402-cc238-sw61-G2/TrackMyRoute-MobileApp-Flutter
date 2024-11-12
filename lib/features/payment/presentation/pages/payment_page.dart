@@ -12,7 +12,7 @@ class PaymentPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Stripe Payment TrackMyRoute"),
+        title: const Text("Pago de Ticket", style: TextStyle(fontWeight: FontWeight.bold)),
       ),
       body: PaymentForm(homeController: homeController),
     );

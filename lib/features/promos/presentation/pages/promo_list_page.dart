@@ -23,8 +23,8 @@ class _PromoListPageState extends State<PromoListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Promociones'),
-        backgroundColor: Colors.blueAccent, // Color de AppBar
+        centerTitle: true,
+        title: const Text('Promociones', style: TextStyle(fontWeight: FontWeight.bold)),
       ),
       body: FutureBuilder<PromosResponseDto?>(
         future: futurePromos,
