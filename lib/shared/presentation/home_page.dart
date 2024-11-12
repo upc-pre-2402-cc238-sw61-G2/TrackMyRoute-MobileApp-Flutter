@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trackmyroute_flutter/features/payment/presentation/pages/payment_page.dart';
+import 'package:trackmyroute_flutter/features/payment/presentation/pages/home_page.dart';
 import 'package:trackmyroute_flutter/features/profile/presentation/profile_screen.dart';
 import 'package:trackmyroute_flutter/features/promos/presentation/pages/promo_list_page.dart';
 import 'package:trackmyroute_flutter/features/tracking/presentation/pages/search_routes_screen.dart';
