@@ -7,7 +7,7 @@ class PaymentForm extends StatelessWidget {
   final TextEditingController _busNameController = TextEditingController();
   final TextEditingController _originNameController = TextEditingController();
   final TextEditingController _destinationNameController =
-      TextEditingController();
+  TextEditingController();
   final TextEditingController _ticketPriceController = TextEditingController();
 
   PaymentForm({super.key, required this.homeController});

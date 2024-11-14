@@ -1,15 +1,20 @@
-# Uncomment this line to define a global platform for your project
-platform :ios, '13.0'
+# Establece la versión mínima de iOS en 14.0
+platform :ios, '14.0'
 
-# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+# Usa frameworks estáticos
+use_frameworks! :linkage => :static
+
+# Desactiva las estadísticas de CocoaPods para reducir la latencia de construcción
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
+# Configuración del proyecto para Flutter
 project 'Runner', {
   'Debug' => :debug,
   'Profile' => :release,
   'Release' => :release,
 }
 
+# Ruta para la configuración de Flutter
 def flutter_root
   generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
   unless File.exist?(generated_xcode_build_settings_path)
@@ -23,22 +28,37 @@ def flutter_root
   raise "FLUTTER_ROOT not found in #{generated_xcode_build_settings_path}. Try deleting Generated.xcconfig, then run flutter pub get"
 end
 
+# Requiere el podhelper de Flutter
 require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
 
+# Configuración de pods de iOS para Flutter
 flutter_ios_podfile_setup
 
+# Configuración del target principal
 target 'Runner' do
   use_frameworks!
   use_modular_headers!
 
+  # Instala todos los pods necesarios para Flutter
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+
+  # Agrega el pod PhoneNumberKit explícitamente
+  pod 'PhoneNumberKit', '~> 3.3'
+  
+  # Configuración para pruebas
   target 'RunnerTests' do
     inherit! :search_paths
   end
 end
 
+# Configuraciones adicionales después de la instalación de pods
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
+    
+    # Asegúrate de que todos los targets usen al menos iOS 14.0
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+    end
   end
 end
