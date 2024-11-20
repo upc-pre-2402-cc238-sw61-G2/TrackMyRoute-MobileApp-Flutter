@@ -33,7 +33,7 @@ class _SignupScreenState extends State<SignupScreen> {
             } else if (state is RegisterSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text('Welcome to TrackMyRoute!'),
+                  content: Text('¡Bienvenid@ TrackMyRoute!'),
                 ),
               );
               Navigator.pushReplacement(
