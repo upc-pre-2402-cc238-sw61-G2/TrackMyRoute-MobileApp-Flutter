@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trackmyroute_flutter/features/tracking/presentation/pages/bus_route_page.dart';
 
 class SearchRoutesScreen extends StatelessWidget {
   const SearchRoutesScreen({super.key});
@@ -33,6 +34,21 @@ class SearchRoutesScreen extends StatelessWidget {
             ),
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SizedBox(
+            width: double.infinity,
+            child: OutlinedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BusRoutesPage()));
+              },
+              child: const Text('Ver todas las rutas'),
+            ),
+          ),
+        )
       ],
     );
   }

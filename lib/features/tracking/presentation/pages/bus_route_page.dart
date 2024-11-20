@@ -62,8 +62,8 @@ class BusRoutesPage extends StatelessWidget {
       create: (context) => BusRouteBloc()..add(GetBusRoutesEvent()),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Rutas de Bus'),
-          backgroundColor: Colors.teal,
+         title: const Text('Track My Route', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.teal,
         ),
         body: BlocBuilder<BusRouteBloc, BusRouteState>(
           builder: (context, state) {
