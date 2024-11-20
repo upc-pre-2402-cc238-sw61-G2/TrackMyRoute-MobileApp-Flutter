@@ -70,7 +70,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       obscureText: state,
                       controller: _pwController,
                       decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.person),
+                          prefixIcon: const Icon(Icons.password),
                           suffixIcon: IconButton(
                                onPressed: () {
                                 context.read<HiddenPasswordCubit>().changeVisibility();
