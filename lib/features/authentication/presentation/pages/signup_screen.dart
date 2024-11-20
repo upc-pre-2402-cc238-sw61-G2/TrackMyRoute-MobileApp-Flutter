@@ -33,7 +33,7 @@ class _SignupScreenState extends State<SignupScreen> {
             } else if (state is RegisterSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text('¡Bienvenid@ TrackMyRoute!'),
+                  content: Text('¡Bienvenid@ a TrackMyRoute!'),
                 ),
               );
               Navigator.pushReplacement(
@@ -49,54 +49,69 @@ class _SignupScreenState extends State<SignupScreen> {
               );
             } 
           },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: _userController,
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.person),
-                      border: OutlineInputBorder(),
-                      label: Text('Usuario')),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: BlocBuilder<HiddenPasswordCubit, bool>(
-                  builder: (context, state) {
-                    return TextField(
-                      obscureText: state,
-                      controller: _pwController,
-                      decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.password),
-                          suffixIcon: IconButton(
-                               onPressed: () {
-                                context.read<HiddenPasswordCubit>().changeVisibility();
-                              }, icon: Icon(state ? Icons.visibility : Icons.visibility_off)),
-                          border: const OutlineInputBorder(),
-                          label: const Text('Contraseña')),
-                    );
-                  }
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      final String username = _userController.text;
-                      final String password = _pwController.text;
-                      context.read<AuthBloc>().add(RegisterUser(
-                          user: username, password: password));
-                    },
-                    child: const Text('Registrarse'),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Image.asset(
+                    'assets/images/bus-stop-location-outline-icon.png',
+                    fit: BoxFit.contain,
+                    height: 128,
                   ),
                 ),
-              )
-            ],
+                const Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Text('Regístrate', style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20))
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: _userController,
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        label: Text('Usuario')),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: BlocBuilder<HiddenPasswordCubit, bool>(
+                    builder: (context, state) {
+                      return TextField(
+                        obscureText: state,
+                        controller: _pwController,
+                        decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.password),
+                            suffixIcon: IconButton(
+                                 onPressed: () {
+                                  context.read<HiddenPasswordCubit>().changeVisibility();
+                                }, icon: Icon(state ? Icons.visibility : Icons.visibility_off)),
+                            border: const OutlineInputBorder(),
+                            label: const Text('Contraseña')),
+                      );
+                    }
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        final String username = _userController.text;
+                        final String password = _pwController.text;
+                        context.read<AuthBloc>().add(RegisterUser(
+                            user: username, password: password));
+                      },
+                      child: const Text('Registrarse'),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
