@@ -8,7 +8,8 @@ class BusRouteRepository {
     Resource<List<BusRouteDto>> result = await BusRouteService().getBusRoutes();
 
     if (result is Success) {
-      return Success(result.data!.map((busRouteDto) => busRouteDto.toBusRoute()).toList());
+      return Success(
+          result.data!.map((busRouteDto) => busRouteDto.toBusRoute()).toList());
     } else {
       return Error(result.message!);
     }
