@@ -77,17 +77,13 @@ class _PromoListPageState extends State<PromoListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Promociones'),
-        backgroundColor: Colors.blueAccent,
-      ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: searchController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Buscar promociones',
                 border: OutlineInputBorder(),
                 suffixIcon: Icon(Icons.search),
@@ -118,7 +114,8 @@ class _PromoListPageState extends State<PromoListPage> {
                     },
                   );
                 } else {
-                  return const Center(child: Text('No se encontraron promociones'));
+                  return const Center(
+                      child: Text('No se encontraron promociones'));
                 }
               },
             ),

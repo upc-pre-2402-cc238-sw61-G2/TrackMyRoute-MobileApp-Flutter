@@ -26,7 +26,19 @@ class _HomePageState extends State<HomePage>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Track My Route', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        title: Row (
+          children: [
+            Image.asset(
+              'assets/images/1024.png',
+              fit: BoxFit.contain,
+              height: 32,
+            ),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              child: const Text('Track My Route', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            )
+          ],
+        ),
         backgroundColor: Colors.teal,
       ),
       body: _views[_selectedIndex], // Muestra la vista seleccionada

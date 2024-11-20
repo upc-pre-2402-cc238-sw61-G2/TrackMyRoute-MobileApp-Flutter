@@ -24,9 +24,9 @@ class AuthService {
         final UserDto userDto = UserDto.fromJson(json);
         return Success(userDto);
       } 
-      return Error('Error: ${response.statusCode}');
+      return Error('Usuario no válido o contraseña incorrecta. Error: ${response.statusCode}');
     } catch (error){
-      return Error('Error: ${error.toString()}');
+      return Error('No se pudo iniciar sesión. Error: ${error.toString()}');
     }
   }  
 
@@ -43,9 +43,9 @@ class AuthService {
         final MessageDto messageDto = MessageDto.fromJson(json);
         return Success(messageDto);
       } 
-      return Error('Error: ${response.statusCode}');
+      return Error('El usuario ya existe. Error: ${response.statusCode}');
     } catch (error){
-      return Error('Error: ${error.toString()}');
+      return Error('No se pudo crear la cuenta. Error: ${error.toString()}');
     }
   }  
 }

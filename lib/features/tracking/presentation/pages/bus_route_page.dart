@@ -15,20 +15,27 @@ class BusRoutesPage extends StatelessWidget {
   void _navigateToMap(BuildContext context, BusRoute busRoute) {
     try {
       // Convierte las coordenadas de origen y destino
-      final originCoords = busRoute.originCoord.split(',').map(double.tryParse).toList();
-      final destinationCoords = busRoute.destinationCoord.split(',').map(double.tryParse).toList();
+      final originCoords =
+          busRoute.originCoord.split(',').map(double.tryParse).toList();
+      final destinationCoords =
+          busRoute.destinationCoord.split(',').map(double.tryParse).toList();
 
-      if (originCoords.length == 2 && originCoords[0] != null && originCoords[1] != null &&
-          destinationCoords.length == 2 && destinationCoords[0] != null && destinationCoords[1] != null) {
-
+      if (originCoords.length == 2 &&
+          originCoords[0] != null &&
+          originCoords[1] != null &&
+          destinationCoords.length == 2 &&
+          destinationCoords[0] != null &&
+          destinationCoords[1] != null) {
         // Crea las coordenadas de origen y destino para el mapa
         final origin = LatLng(originCoords[0]!, originCoords[1]!);
-        final destination = LatLng(destinationCoords[0]!, destinationCoords[1]!);
+        final destination =
+            LatLng(destinationCoords[0]!, destinationCoords[1]!);
 
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => MapPage(origin: origin, destination: destination),
+            builder: (context) =>
+                MapPage(origin: origin, destination: destination),
           ),
         );
       } else {
@@ -38,7 +45,8 @@ class BusRoutesPage extends StatelessWidget {
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Error: Formato de coordenadas incorrecto')),
+        const SnackBar(
+            content: Text('Error: Formato de coordenadas incorrecto')),
       );
     }
   }
@@ -62,8 +70,10 @@ class BusRoutesPage extends StatelessWidget {
       create: (context) => BusRouteBloc()..add(GetBusRoutesEvent()),
       child: Scaffold(
         appBar: AppBar(
-         title: const Text('Track My Route', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.teal,
+          title: const Text('Track My Route',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          backgroundColor: Colors.teal,
         ),
         body: BlocBuilder<BusRouteBloc, BusRouteState>(
           builder: (context, state) {
@@ -76,7 +86,8 @@ class BusRoutesPage extends StatelessWidget {
                   final busRoute = state.busRoutes[index];
                   return ListTile(
                     title: Text(busRoute.busName),
-                    subtitle: Text('${busRoute.originName} ➔ ${busRoute.destinationName}'),
+                    subtitle: Text(
+                        '${busRoute.originName} ➔ ${busRoute.destinationName}'),
                     trailing: Text('${busRoute.totalDistance} km'),
                     onTap: () {
                       // Iniciar pago o mostrar mapa al hacer clic en la ruta
