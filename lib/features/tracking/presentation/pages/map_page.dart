@@ -5,7 +5,7 @@ class MapPage extends StatelessWidget {
   final LatLng origin;
   final LatLng destination;
 
-  const MapPage({Key? key, required this.origin, required this.destination}) : super(key: key);
+  const MapPage({super.key, required this.origin, required this.destination});
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +20,8 @@ class MapPage extends StatelessWidget {
           zoom: 10,
         ),
         markers: {
-          Marker(markerId: MarkerId('origin'), position: origin),
-          Marker(markerId: MarkerId('destination'), position: destination),
+          Marker(markerId: const MarkerId('origin'), position: origin),
+          Marker(markerId: const MarkerId('destination'), position: destination),
         },
       ),
     );

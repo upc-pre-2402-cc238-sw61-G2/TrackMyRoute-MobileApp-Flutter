@@ -114,7 +114,8 @@ class _PromoListPageState extends State<PromoListPage> {
                     },
                   );
                 } else {
-                  return const Center(child: Text('No se encontraron promociones'));
+                  return const Center(
+                      child: Text('No se encontraron promociones'));
                 }
               },
             ),
