@@ -3,8 +3,15 @@ import 'package:trackmyroute_flutter/features/promos/domain/promo.dart';
 
 class PromoCard extends StatelessWidget {
   final Promo promo;
+  final bool isFavorite;
+  final VoidCallback onFavoriteToggle;
 
-  const PromoCard({super.key, required this.promo});
+  const PromoCard({
+    super.key,
+    required this.promo,
+    required this.isFavorite,
+    required this.onFavoriteToggle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +27,24 @@ class PromoCard extends StatelessWidget {
                   return const Icon(Icons.broken_image, size: 100, color: Colors.grey);
                 },
               )
-            : null,  // Si no hay imagen, el 'leading' queda vacío
-        title: Text(
-          promo.title,
-          style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),
+            : null,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Text(
+                promo.title,
+                style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueAccent),
+              ),
+            ),
+            IconButton(
+              icon: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: isFavorite ? Colors.red : Colors.grey,
+              ),
+              onPressed: onFavoriteToggle,
+            ),
+          ],
         ),
         subtitle: Text(
           promo.description,
