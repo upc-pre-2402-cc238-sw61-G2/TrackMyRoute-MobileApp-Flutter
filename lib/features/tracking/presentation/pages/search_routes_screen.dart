@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:trackmyroute_flutter/features/tracking/presentation/pages/bus_route_page.dart';
 
-class SearchRoutesScreen extends StatelessWidget {
+class SearchRoutesScreen extends StatefulWidget {
   const SearchRoutesScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final TextEditingController searchController = TextEditingController();
+  State<SearchRoutesScreen> createState() => _SearchRoutesScreenState();
+}
 
+class _SearchRoutesScreenState extends State<SearchRoutesScreen> {
+  final TextEditingController searchController = TextEditingController();
+  late GoogleMapController _mapController;
+  final CameraPosition _initialCameraPosition = const CameraPosition(
+    target: LatLng(37.7749, -122.4194), // Coordenadas iniciales (San Francisco, por ejemplo)
+    zoom: 12,
+  );
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         Padding(
@@ -26,29 +37,36 @@ class SearchRoutesScreen extends StatelessWidget {
             ),
           ),
         ),
-        const Expanded(
-          child: Center(
-            child: Text(
-              'Aquí puedes buscar rutas',
-              style: TextStyle(fontSize: 24),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const BusRoutesPage(),
+                    ),
+                  );
+                },
+                child: const Text('Ver todas las rutas'),
+              ),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-            width: double.infinity,
-            child: OutlinedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const BusRoutesPage()));
-              },
-              child: const Text('Ver todas las rutas'),
-            ),
+        Expanded(
+          flex: 2, // Ajusta este valor para controlar el tamaño del mapa
+          child: GoogleMap(
+            initialCameraPosition: _initialCameraPosition,
+            onMapCreated: (GoogleMapController controller) {
+              _mapController = controller;
+            },
+            myLocationEnabled: true, // Habilita la ubicación del dispositivo
+            myLocationButtonEnabled: true,
           ),
-        )
+        ),
       ],
     );
   }
